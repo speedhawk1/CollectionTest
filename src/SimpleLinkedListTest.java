@@ -3,10 +3,10 @@
  */
 public class SimpleLinkedListTest {
     private class Node{
-        private Object o;
         public Node(Object o) {
             this.o = o;
         }
+        Object o;
         Node next;
     }
 
@@ -22,6 +22,10 @@ public class SimpleLinkedListTest {
 
     private void append(Node node){
         Node last = first;
-
+        while(last.next != null){
+            last = last.next;
+        }
+        last.next = node;
     }
+
 }
