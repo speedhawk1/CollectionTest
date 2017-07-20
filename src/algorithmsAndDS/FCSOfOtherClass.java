@@ -9,7 +9,7 @@ import java.util.function.Consumer;
 /**
  * Created by Administrator on 2017/7/6.
  */
-public class FCSOfOtherClass<Double> {
+public class FCSOfOtherClass<Double> implements Iterable<Double>{
     private int n;
     private Double[] a;
 
@@ -107,10 +107,11 @@ public class FCSOfOtherClass<Double> {
 //    }
 
     public static void main(String[] args) {
-        FCSOfOtherClass<Integer> fcs = new FCSOfOtherClass<>(100);
+        FCSOfOtherClass<Integer> fcs = new FCSOfOtherClass<>(4);
         int i = 0;
         while (!StdIn.isEmpty()) {
             fcs.push(++i);
+            StdOut.print(fcs.n);
         }
         for (int j:fcs) {
             StdOut.print(j);
