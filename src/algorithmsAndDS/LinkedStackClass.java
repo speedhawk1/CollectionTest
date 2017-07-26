@@ -1,22 +1,17 @@
 package algorithmsAndDS;
 
-import java.util.Iterator;
-
 /**
  * Created by Administrator on 2017/7/7.
  */
 // 下压堆栈：
-public class LinkedStackClass<Double> implements Iterable{
-    @Override
-    public Iterator iterator() {
-        return null;
-    }
+public class LinkedStackClass<Double>{
+
 
     private class Node{
         private Double start;
         private Node next;
     }
-    Node first;
+    Node first = new Node();
     private int n;
     public LinkedStackClass(Double dub){
         first.start = dub;
@@ -35,6 +30,11 @@ public class LinkedStackClass<Double> implements Iterable{
         first = first.next;
         --n;
         return dub;
+    }
+
+    public static void main(String[] args) {
+        LinkedStackClass<String> lsc = new LinkedStackClass<>("aaa");
+        System.out.print(lsc.first.start);
     }
 }
 
