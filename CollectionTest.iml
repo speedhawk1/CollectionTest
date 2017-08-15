@@ -18,5 +18,7 @@
         </SOURCES>
       </library>
     </orderEntry>
+    <orderEntry type="library" name="algs4" level="application" />
+    <orderEntry type="library" name="stdlib" level="application" />
   </component>
 </module>

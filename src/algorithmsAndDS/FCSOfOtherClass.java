@@ -13,6 +13,9 @@ public class FCSOfOtherClass<Double> implements Iterable<Double>{
     private int n;
     private Double[] a;
 
+    public FCSOfOtherClass() {
+    }
+
     public FCSOfOtherClass(int cap) {
         a = (Double[]) new Object[cap];
     }
@@ -106,6 +109,20 @@ public class FCSOfOtherClass<Double> implements Iterable<Double>{
 //        }
 //    }
 
+    public static <Double> FCSOfOtherClass<Double> copy(FCSOfOtherClass<Double> fcsOfOtherClass){
+        // copy方法功能是运用迭代器将fcsOfOtherClass栈中元素迭代至另一个FCSOfOtherClass<Double>类对象中；
+        Iterator<Double> iterator = fcsOfOtherClass.iterator();
+        FCSOfOtherClass<Double> result = new FCSOfOtherClass<>();
+        FCSOfOtherClass<Double> temp = new FCSOfOtherClass<>();
+        while (iterator.hasNext()) {
+            temp.push(iterator.next());  //？为何要存在一个temp类，而不直接将原栈中的元素转移到result中并返回？？
+        }
+        iterator = temp.iterator();
+        while(iterator.hasNext()){
+            result.push(iterator.next());
+        }
+        return result;
+    }
     public static void main(String[] args) {
         FCSOfOtherClass<Integer> fcs = new FCSOfOtherClass<>(4);
         int i = 0;

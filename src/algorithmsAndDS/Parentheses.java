@@ -42,7 +42,8 @@ public class Parentheses {
             }else{
                 ints[n++] = inte;
             }
-        };
+        }
+
         public Integer pop(){
             if(n < ints.length / 2){
                 Integer[] newints = (Integer[]) new Object[ints.length / 2];
@@ -84,6 +85,9 @@ public class Parentheses {
             }
         }
         return commas.isEmpty();
+    }
+    public static Stack<Integer> copy(Stack<Integer> stack){
+        return stack;
     }
     public static void main(String[] args) {
         /*Stack<String> stack = new Stack<>();
