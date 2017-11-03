@@ -31,8 +31,8 @@ public class SortCompare {
     }
 
     public static void main(String[] args) {
-        String alg1 = "Insertion";
-        String alg2 = "Selection";
+        String alg1 = "Shell";
+        String alg2 = "Insertion";
         int N = 2000;
         int T = 110;
         double t1 = timeRandomImput(alg1,N,T);
