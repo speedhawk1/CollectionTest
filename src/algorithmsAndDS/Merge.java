@@ -3,7 +3,7 @@ package algorithmsAndDS;
 import edu.princeton.cs.algs4.StdOut;
 
 /**
- * Created by Administrator on 2017/11/3.
+ * 这种归并并非十分严谨，因为：1、对于子数组遗留的元素无法进一步排序。2、有越界异常的可能（Row16的设计就是防止越界异常）。
  */
 public class Merge {
 
