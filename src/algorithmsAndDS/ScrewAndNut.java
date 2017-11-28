@@ -1,19 +1,21 @@
-/*
-*Ë¼Â·£º1¡¢ÏÈÓÃÒ»¸öÂİÃ±¶ÔÂİ¶¤½øĞĞÇĞ·Ö£»
-		2¡¢ÔÙÓÃÂİ¶¤µÄÇĞ·ÖÖµ¶ÔÂİÃ±ÇĞ·Ö£»´ËÊ±Âİ¶¤ºÍÂİÃ±·Ö±ğ±»·Ö³É2¸öÊı×é£»
-		3¡¢¶ÔÂİ¶¤ºÍÂİÃ±µÄ2¸öÊı×éÔÙ·Ö±ğÖØ¸´1ºÍ2²½Öè¡£
-*/
+package algorithmsAndDS;
 
+/*
+*æ€è·¯ï¼šå¯¹å¿«é€Ÿæ’åºç®—æ³•ç¨åŠ æ”¹åŠ¨ã€‚
+*       1ã€å…ˆç”¨ä¸€ä¸ªèºå¸½å¯¹èºé’‰è¿›è¡Œåˆ‡åˆ†ï¼›
+		2ã€å†ç”¨èºé’‰çš„åˆ‡åˆ†å€¼å¯¹èºå¸½åˆ‡åˆ†ï¼›æ­¤æ—¶èºé’‰å’Œèºå¸½åˆ†åˆ«è¢«åˆ†æˆ2ä¸ªæ•°ç»„ï¼›
+		3ã€å¯¹èºé’‰å’Œèºå¸½çš„2ä¸ªæ•°ç»„å†åˆ†åˆ«é‡å¤1å’Œ2æ­¥éª¤ã€‚
+* */
 public class ScrewAndNut{
 	
 	private static final int N = 10	;
 
 	public static int partitation(Comparable[] a,Comparable[] b,int lo,int hi){
-		// ¸Ä½øÇĞ·Ö·¨1£»
+        /* æ”¹è¿›åˆ‡åˆ†æ³•1ï¼› */
 		Comparable v = b[lo];
-		int parter;
+		int parter = 0;
 		int i = lo + 1; 
-		int j = hi;  // Ò»°ãÎªa.length - 1;
+		int j = hi;  // ä¸€èˆ¬ä¸ºa.length - 1;
 		while(true){
 			while(v.compareTo(a[++i]) <= 0) if(a[i] == v) parter = i++; if(i >= hi) break;
 			while(v.compareTo(a[--j]) >= 0) if(a[j] == v) parter = j--; if(j <= lo) break;
@@ -25,10 +27,10 @@ public class ScrewAndNut{
 	}
 	
 	public static void partitation(Comparable[] a,Comparable v,int lo,int hi){
-		// ¸Ä½øÇĞ·Ö·¨2£»
-		int parter;
+        // æ”¹è¿›åˆ‡åˆ†æ³•2ï¼›
+		int parter = 0;
 		int i = lo + 1; 
-		int j = hi;  // Ò»°ãÎªa.length - 1;
+		int j = hi;
 		while(true){
 			while(v.compareTo(a[++i]) <= 0) if(a[i] == v) parter = i++; if(i >= hi) break;
 			while(v.compareTo(a[--j]) >= 0) if(a[j] == v) parter = j--; if(j <= lo) break;
@@ -44,11 +46,11 @@ public class ScrewAndNut{
 	
 	public static void sort(Comparable[] a,Comparable[] b,int lo,int hi){
 		if(hi <= lo) return;
-		 // Í¨¹ıÂİÃ±¶ÔÂİ¶¤ÇĞ·Ö£»
-		int k = partitation(a,b,lo,hi); 
-		// Í¨¹ıÂİ¶¤¶ÔÂİÃ±ÇĞ·Ö£»
+        // é€šè¿‡èºå¸½å¯¹èºé’‰åˆ‡åˆ†ï¼›
+		int k = partitation(a,b,lo,hi);
+        // é€šè¿‡èºé’‰å¯¹èºå¸½åˆ‡åˆ†ï¼›
 		partitation(b,a[k],lo,hi);
-		sort(a,b,lo,k-1);
+		sort(a,b,lo,k-1);  //é€’å½’è°ƒç”¨
 		sort(a,b,k+1,hi);
 	}
 	
@@ -56,13 +58,13 @@ public class ScrewAndNut{
 		Comparable[] screw = new Comparable[N];
 		Comparable[] nut = new Comparable[N];
 		for(int i = 0;i < N;i++){
-		// ÈçºÎ¹¹ÔìÒ»¸öÎŞÖØ¸´ÏîµÄÊı×é£¿
-			a[i] = 100*Math.random();
-			b[i] = 100*Math.random();
+            // å¦‚ä½•æ„é€ ä¸€ä¸ªæ— é‡å¤é¡¹çš„æ•°ç»„ï¼Ÿ
+			screw[i] = 100*Math.random();
+			nut[i] = 100*Math.random();
 		}
-		sort(a,b,0,N-1);
+		sort(screw,nut,0,N-1);
 		for(int i = 0;i < N;i++){
-			System.out.println(a[i] + "," + b[i]);
+			System.out.println(screw[i] + "," + nut[i]);
 		}
 	}
 }
