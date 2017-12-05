@@ -11,7 +11,6 @@ public class ToMax {
 
     private String[] strs;
     private int i = 0;
-    private int l;
 
     public ToMax(int leng){strs = new String[leng+1];}
 
@@ -56,7 +55,7 @@ public class ToMax {
     public static void main(String[] args) throws IOException {
         ToMax tm = new ToMax(30);
         BufferedReader br = new BufferedReader(new FileReader("F:/readtest.txt"));
-        String str = "";
+        String str = "begin";
         while(!(str.equals("damn"))){   // 为何while((str = br.readLine()) != null)总是隔一个输出？
             str = br.readLine();
             if(str.equals("*")){
