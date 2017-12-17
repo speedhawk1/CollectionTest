@@ -5,7 +5,7 @@ import java.util.Iterator;
 /**
  * Created by Administrator on 2017/7/31.
  */
-public class ArrrayQueueOfStrings<Integer> implements Iterable {
+public class  ArrrayQueueOfStrings<Integer> implements Iterable {
     private int n;
     private Integer[] strs;
     private class ArrayQueueIterator implements Iterator<Integer>{
