@@ -3,12 +3,16 @@ package algorithmsAndDS;
 import edu.princeton.cs.algs4.Queue;
 import edu.princeton.cs.algs4.StdOut;
 
+import java.util.Scanner;
+
 /**
  * 二叉查找树符号表：
+ * 需要训练自己的思维链（加长），而且自己的学习方法貌似还跟别人有点区别：
+ * 别人是傻傻地不断实践，而我是先了解成功的最终形态，再将这种形态实例化。
  */
 public class BSTS<Key extends Comparable<Key>,Value> {
 
-    Node root;
+    public Node root;
     class Node{
 
         Key key;
@@ -28,7 +32,10 @@ public class BSTS<Key extends Comparable<Key>,Value> {
         return size(root);
     }
 
-    public int size(Node x){return x.N;}
+    public int size(Node x){
+        if(x == null) return 0;
+        else return x.N;
+    }
 
     public Value get(Key key){return get(root,key);}// 由键获取到对应的值；
 
@@ -47,12 +54,18 @@ public class BSTS<Key extends Comparable<Key>,Value> {
     }  // 添加一个键值对；
 
     public Node put(Node x,Key key,Value value){  // 具体方法是返回一个添加一个元素（其键为key值为value）后的链表；
+//        assert key != null : "key is null";
+//        assert root.key != null : "root.key is null";
+        if(x == null) return new Node(key,value,1);
         int cmp = key.compareTo(x.key);
         if(cmp < 0){
             x.left = put(x.left,key,value);
         }else if(cmp > 0){
             x.right = put(x.right,key,value);
         }else x.value = value;
+        if(x.left == null) x.N = 0 + size(x.right) + 1;
+        if(x.right == null) x.N = size(x.left) + 1;
+//        StdOut.print(x.N);
         x.N = size(x.left) + size(x.right) + 1;  // 更新新增或更改操作后的x对应的节点个数；
         return x;
     }
@@ -61,7 +74,7 @@ public class BSTS<Key extends Comparable<Key>,Value> {
         return min(root).key;
     }
     private Node min(Node x){  // 代码思路：若key值小于根节点，则链表最小键必定为其左子树中最小键。这是一种递归思想。
-        if(x == null) return x;
+        if(x.left == null) return x;
         return min(x.left);
     }
 
@@ -69,7 +82,7 @@ public class BSTS<Key extends Comparable<Key>,Value> {
         return max(root).key;
     }
     private Node max(Node x){  // 同理可得，若key值大于根节点的key值，则链表中最大键必然是右子树中最大键。
-        if(x == null) return x;
+        if(x.right == null) return x;
         return max(x.right);
     }
 
@@ -192,7 +205,31 @@ public class BSTS<Key extends Comparable<Key>,Value> {
         int cmplo = lo.compareTo(x.key);
         int cmphi = hi.compareTo(x.key);
         if(cmplo < 0) keys(x.left,queue,lo,hi);// 若lo值小于x根节点的键，则继续递归至左子树遍历；
-        if(cmphi > 0) keys(x.right,queue,lo,hi);// 若hi值大于x根节点的键，则继续递归至右子树遍历；
         if(cmplo <= 0 && cmphi >= 0) queue.enqueue(x.key); //当cmplo或cmphi为零时，将根节点对应key键压入队列queue
+        if(cmphi > 0) keys(x.right,queue,lo,hi);// 若hi值大于x根节点的键，则继续递归至右子树遍历；
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        BSTS<String,Integer> bsts = new BSTS<>();
+//        assert bsts.root.key != null : "root.key is null";
+        System.out.print("input your codes");
+        while(true){
+            int a = 0;
+            String str = scanner.next();
+//            assert str != null : "str is null";
+            if(str.equals("exit")) break;
+//            System.out.print(str);
+//            System.out.print(bsts.root);
+            bsts.root = bsts.put(str,a++);
+//            System.out.print(bsts.root);
+//            System.out.print(bsts.root.N);
+            /*今后编程是只要碰到任何疑似的null都要特别留神空指针异常！！！太可怕了！！！*/
+        }
+//            System.out.print(bsts.max());
+        Queue<String> queue = (Queue<String>) bsts.keys();
+        while(!queue.isEmpty()){
+            System.out.print(queue.dequeue());
+        }
     }
 }

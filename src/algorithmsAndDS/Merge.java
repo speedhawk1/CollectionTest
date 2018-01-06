@@ -50,4 +50,7 @@ public class Merge {
         merge(test,0,mid,test.length);
         show(test);
     }
+
+    public static void sort(Comparable[] a) {
+    }
 }
