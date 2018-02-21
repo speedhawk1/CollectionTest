@@ -28,6 +28,23 @@ public class BSTS<Key extends Comparable<Key>,Value> {
         }
     }
 
+    class TriNode{
+        Key key1;
+        Key key2;
+        Value value;
+        Node left;
+        Node mid;
+        Node right;
+        int N;
+
+        public TriNode(Key key1,Key key2,Value value,int N){
+            this.key1 = key1;
+            this.key2 = key2;
+            this.value = value;
+            this.N = N;
+        }
+    }
+
     public int size(){  // 返回符号表的总节点数
         return size(root);
     }
